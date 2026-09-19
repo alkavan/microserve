@@ -1,0 +1,22 @@
+[Unit]
+Description=Microserve HTTP server
+Documentation=https://docs.tekfed.org/microserve/latest/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+RuntimeDirectory=microserve
+RuntimeDirectoryMode=0755
+ExecStart=/bin/microserver --service -c /etc/microserve/microserve.yaml
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=30
+KillSignal=SIGTERM
+# SIGTERM stops the master, which stops site children. Anything still in
+# the cgroup is killed after TimeoutStopSec.
+KillMode=mixed
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

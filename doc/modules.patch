@@ -1,0 +1,184 @@
+diff --git a/documentation/doxygen.py b/documentation/doxygen.py
+index 008c197..c850f25 100755
+--- a/documentation/doxygen.py
++++ b/documentation/doxygen.py
+@@ -70,6 +70,14 @@ import latex2svg
+ import latex2svgextra
+ import ansilexer
+ 
++# C++ module interface unit extensions. .ixx is MSVC, .cppm/.ccm/.cxxm
++# are Clang, .mxx is the other widely used spelling. Implementation units keep
++# ordinary .cpp/.cc/.cxx suffixes and stay plain files.
++cpp_module_extensions = ('.ixx', '.mxx', '.cppm', '.ccm', '.cxxm')
++
++def is_cpp_module_filename(filename: str) -> bool:
++    return filename.endswith(cpp_module_extensions)
++
+ class EntryType(enum.Enum):
+     # Order must match the search_type_map below; first value is reserved for
+     # ResultFlag.ALIAS
+@@ -1335,6 +1343,13 @@ def parse_desc_internal(state: State, element: ET.Element, immediate_parent: ET.
+             # Custom mapping of filenames to languages
+             mapping = [('.h', 'c++'),
+                        ('.h.cmake', 'c++'),
++                       # C++ module interface units. Pygments does not know
++                       # these suffixes, so map them explicitly.
++                       ('.cppm', 'c++'),
++                       ('.cxxm', 'c++'),
++                       ('.ixx', 'c++'),
++                       ('.mxx', 'c++'),
++                       ('.ccm', 'c++'),
+                        # Pygments knows only .vert, .frag, .geo
+                        ('.glsl', 'glsl'),
+                        ('.conf', 'ini'),
+@@ -2473,7 +2488,8 @@ def extract_metadata(state: State, xml):
+         return
+     assert len([i for i in root]) == 1
+ 
+-    if compounddef.attrib['kind'] not in ['namespace', 'group', 'class', 'struct', 'union', 'dir', 'file', 'page']:
++    # 'module' is a C++ module (export module), not a Doxygen group.
++    if compounddef.attrib['kind'] not in ['namespace', 'group', 'class', 'struct', 'union', 'dir', 'file', 'page', 'module']:
+         logging.debug("No useful info in {}, skipping".format(state.current))
+         return
+ 
+@@ -2503,7 +2519,7 @@ def extract_metadata(state: State, xml):
+     # ElementTree deprecated the __bool__ conversion of Element, so I now have
+     # to check that `detaileddescription` actually has any children. Checking
+     # against None is not enough as it could be present but be empty.
+-    compound.has_details = compound.kind == 'group' or compound.brief or len(compounddef.find('detaileddescription')) or (compound.kind == 'page' and not is_a_stupid_empty_markdown_page(compounddef))
++    compound.has_details = compound.kind in ['group', 'module'] or compound.brief or len(compounddef.find('detaileddescription')) or (compound.kind == 'page' and not is_a_stupid_empty_markdown_page(compounddef))
+     compound.children = []
+ 
+     # Version badges, deprecation status. If @since is followed by
+@@ -2572,6 +2588,10 @@ def extract_metadata(state: State, xml):
+     elif compounddef.attrib['kind'] == 'group':
+         for i in compounddef.findall('innergroup'):
+             compound.children += [i.attrib['refid']]
++    elif compounddef.attrib['kind'] == 'module':
++        # Partitions and implementation units Doxygen nests under the module.
++        for i in compounddef.findall('innermodule'):
++            compound.children += [i.attrib['refid']]
+ 
+     state.compounds[compound.id] = compound
+ 
+@@ -2584,7 +2604,7 @@ def postprocess_state(state: State):
+ 
+     # Strip name of parent symbols from names to get leaf names
+     for _, compound in state.compounds.items():
+-        if not compound.parent or compound.kind in ['file', 'page', 'group']:
++        if not compound.parent or compound.kind in ['file', 'page', 'group', 'module']:
+             compound.leaf_name = compound.name
+             continue
+ 
+@@ -2826,6 +2846,9 @@ def parse_xml(state: State, xml: str):
+     # This is similar to compound.url handling in extract_metadata() above.
+     compound.url_base = ('index' if compound.id == 'indexpage' else compound.id)
+     compound.url = compound.url_base + '.html'
++    # Interface unit vs implementation unit is an extension convention; Doxygen
++    # still emits kind="file" for the source file itself.
++    compound.is_module_interface = compound.kind == 'file' and is_cpp_module_filename(compound.name)
+     # Save current compound URL for search data building and ID extraction,
+     # save current URL prefix for extract_id_hash() (these are the same for
+     # top-level desc, but usually not for definitions, as an enum can be both
+@@ -2878,7 +2901,7 @@ def parse_xml(state: State, xml: str):
+ 
+     # Build breadcrumb. Breadcrumb for example pages is built after everything
+     # is parsed.
+-    if compound.kind in ['namespace', 'group', 'struct', 'class', 'union', 'file', 'dir', 'page']:
++    if compound.kind in ['namespace', 'group', 'struct', 'class', 'union', 'file', 'dir', 'page', 'module']:
+         # Gather parent compounds
+         path_reverse = [compound.id]
+         while path_reverse[-1] in state.compounds and state.compounds[path_reverse[-1]].parent:
+@@ -3089,7 +3112,7 @@ def parse_xml(state: State, xml: str):
+                             assert compounddef_child.attrib['prot'] == 'protected'
+                             compound.protected_types += [('class', class_)]
+                     else:
+-                        assert compound.kind in ['namespace', 'group', 'file']
++                        assert compound.kind in ['namespace', 'group', 'file', 'module']
+                         compound.classes += [class_]
+ 
+         # Base class (if it links to anywhere)
+@@ -3152,6 +3175,20 @@ def parse_xml(state: State, xml: str):
+ 
+                     compound.derived_classes += [class_]
+ 
++        # C++ module partition (not a Doxygen group)
++        elif compounddef_child.tag == 'innermodule':
++            assert compound.kind == 'module'
++            id = compounddef_child.attrib['refid']
++            if id in state.compounds and state.compounds[id].has_details:
++                symbol = state.compounds[id]
++                module = Empty()
++                module.url = symbol.url
++                module.name = symbol.leaf_name
++                module.brief = symbol.brief
++                module.deprecated = symbol.deprecated
++                module.since = symbol.since
++                compound.modules += [module]
++
+         # Module (*not* member group)
+         elif compounddef_child.tag == 'innergroup':
+             assert compound.kind == 'group'
+@@ -3628,6 +3665,8 @@ def parse_xml(state: State, xml: str):
+             kind = EntryType.DIR
+         elif compound.kind == 'file':
+             kind = EntryType.FILE
++        elif compound.kind == 'module':
++            kind = EntryType.FILE
+         elif compound.kind == 'page':
+             kind = EntryType.PAGE
+         elif compound.kind == 'group':
+@@ -3719,6 +3758,10 @@ def parse_index_xml(state: State, xml):
+                 top_level_dirs += [entry]
+             elif compound.kind == 'file':
+                 top_level_files += [entry]
++            elif compound.kind == 'module':
++                # Listed with files so they are reachable without a new navbar
++                # slot. Doxygen groups keep the existing "modules" index.
++                top_level_files += [entry]
+             else:
+                 assert compound.kind == 'page'
+                 # Ignore index page in page listing, add it later only if it
+@@ -3736,7 +3779,7 @@ def parse_index_xml(state: State, xml):
+                     orphan_pages[compound.parent] = {}
+                 orphan_pages[compound.parent][entry.id] = entry
+             else:
+-                assert compound.kind in ['class', 'struct', 'union', 'file']
++                assert compound.kind in ['class', 'struct', 'union', 'file', 'module']
+                 if not compound.parent in orphans:
+                     orphans[compound.parent] = []
+                 orphans[compound.parent] += [entry]
+diff --git a/documentation/templates/doxygen/file.html b/documentation/templates/doxygen/file.html
+index 2427983..6fbb032 100644
+--- a/documentation/templates/doxygen/file.html
++++ b/documentation/templates/doxygen/file.html
+@@ -1,10 +1,10 @@
+ {% extends 'base-reference.html' %}
+ 
+-{% block title %}{% set j = joiner('/') %}{% for name, _ in compound.breadcrumb %}{{ j() }}{{ name }}{% endfor %} file | {{ super() }}{% endblock %}
++{% block title %}{% set j = joiner('/') %}{% for name, _ in compound.breadcrumb %}{{ j() }}{{ name }}{% endfor %} {% if compound.is_module_interface %}module{% else %}file{% endif %} | {{ super() }}{% endblock %}
+ 
+ {% block header %}
+         <h1>
+-          {%+ for name, target in compound.breadcrumb[:-1] %}<span class="m-breadcrumb"><a href="{{ target }}">{{ name }}</a>/</span>{% endfor %}{{ compound.breadcrumb[-1][0] }} <span class="m-thin">file</span>{% if compound.since %} {{ compound.since }}{% endif %}
++          {%+ for name, target in compound.breadcrumb[:-1] %}<span class="m-breadcrumb"><a href="{{ target }}">{{ name }}</a>/</span>{% endfor %}{{ compound.breadcrumb[-1][0] }} <span class="m-thin">{% if compound.is_module_interface %}module{% else %}file{% endif %}</span>{% if compound.since %} {{ compound.since }}{% endif %}
+           {# need an explicit space here otherwise the newline gets removed #}
+ 
+         </h1>
+diff --git a/documentation/templates/doxygen/module.html b/documentation/templates/doxygen/module.html
+new file mode 100644
+index 0000000..cacd35d
+--- /dev/null
++++ b/documentation/templates/doxygen/module.html
+@@ -0,0 +1,11 @@
++{% extends 'base-reference.html' %}
++
++{% block title %}{% set j = joiner('/') %}{% for name, _ in compound.breadcrumb %}{{ j() }}{{ name }}{% endfor %} module | {{ super() }}{% endblock %}
++
++{% block header %}
++        <h1>
++          {%+ for name, target in compound.breadcrumb[:-1] %}<span class="m-breadcrumb"><a href="{{ target }}">{{ name }}</a>/</span>{% endfor %}{{ compound.breadcrumb[-1][0] }} <span class="m-thin">module</span>{% if compound.since %} {{ compound.since }}{% endif %}
++          {# need an explicit space here otherwise the newline gets removed #}
++
++        </h1>
++{% endblock %}

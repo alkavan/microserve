@@ -1,0 +1,42 @@
+# Optional overlay for microserve.yaml.
+# Default is a stand-alone node: this file is a no-op unless enabled.
+#
+#   microserve -c microserve.yaml
+#   microserve -c microserve.yaml -f federation.yaml
+#
+# this overlay never replaces Local sites in microserve.yaml.
+# Leave the federation by setting enabled: false, or membership: none.
+
+federation:
+  enabled: false # standalone | member | hub
+  role: standalone
+  membership: none # none | unverified | certified
+
+  node_id: "node-1"
+  node_name: Microserve Node 1
+  urn_nid: microserve
+  # URN NID for membership SAN: URI:urn:{urn_nid}:node:{node_id}
+  # Certificate example: subjectAltName=DNS:localhost,URI:urn:microserve:node:node-1
+
+  # Federation identity (not the site TLS certs in microserve.yaml).
+  # Required for membership: certified. A revoked node_id cannot serve
+  # until it leaves the federation or receives a new certificate.
+  cert: /share/microserve/certs/federation.crt
+  key: /share/microserve/certs/federation.key
+  ca: /share/microserve/certs/federation-ca.crt
+  crl: /share/microserve/certs/federation.crl
+
+  # Upstream hub in the hierarchy (members). Empty on a root hub.
+  parent: ""
+
+  peers: []
+  # - name: sibling
+  #   url: https://sibling.example:9443
+
+  # Hub policy. Meaningless on a stand-alone node.
+  # block_unverified: unverified members honoring this overlay do not
+  # operate until they install a federation certificate or remove membership.
+  allow_unverified: false
+  block_unverified: true
+  revoked: []
+  # - expired-or-kicked-node-id

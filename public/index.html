@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>microserve</title>
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+    <meta name="description" content="Fast and efficient experimental webserver.">
+    <meta name="author" content="microserve">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" href="/fonts/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Source_Sans_3/SourceSans3-Italic-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Source_Code_Pro/SourceCodePro-Italic-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/website.css" />
+</head>
+<body class="min-h-screen flex flex-col bg-earth text-parchment">
+    <header class="bg-soil border-b-4 border-moss">
+        <div class="container mx-auto px-4 py-8 max-w-5xl">
+            <p class="text-center text-xs tracking-widest uppercase text-moss mb-3">Fast and efficient experimental webserver</p>
+            <h1 class="text-5xl text-center text-cream font-semibold">Microserve 0.5 (beta1) — Yarr!</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-10 max-w-5xl flex-1">
+        <blockquote class="text-xl text-center my-6 px-6 text-dim italic max-w-3xl mx-auto border-l-4 border-gold">
+            <p>
+                A common mistake that people make when trying to design something completely foolproof
+                is to underestimate the ingenuity of complete fools.
+            </p>
+            <footer class="mt-3 text-base not-italic text-gold font-semibold">— Douglas Adams</footer>
+        </blockquote>
+
+        <hr class="mx-10 my-6" />
+
+        <div class="space-y-10">
+            <div>
+                <p class="text-center font-medium mb-3 text-bronze">Dawn Cityscape</p>
+                <div class="grid grid-cols-2 gap-0 rounded overflow-hidden border border-line shadow-sm">
+                    <div class="relative">
+                        <img src="/images/dawn-cityscape.png" alt="dawn cityscape" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-parchment text-[10px] py-1 text-center tracking-widest uppercase">Original</div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/dawn-cityscape_upscale.png" alt="dawn cityscape (upscale)" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-gold text-[10px] py-1 text-center tracking-widest uppercase">Upscaled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="text-center font-medium mb-3 text-bronze">Forest and Lake</p>
+                <div class="grid grid-cols-2 gap-0 rounded overflow-hidden border border-line shadow-sm">
+                    <div class="relative">
+                        <img src="/images/forest-and-lake.png" alt="forest and lake" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-parchment text-[10px] py-1 text-center tracking-widest uppercase">Original</div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/forest-and-lake_upscale.png" alt="forest and lake (upscale)" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-gold text-[10px] py-1 text-center tracking-widest uppercase">Upscaled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="text-center font-medium mb-3 text-bronze">Many Images</p>
+                <div class="grid grid-cols-2 gap-0 rounded overflow-hidden border border-line shadow-sm">
+                    <div class="relative">
+                        <img src="/images/many-images.png" alt="many images" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-parchment text-[10px] py-1 text-center tracking-widest uppercase">Original</div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/many-images_upscale.png" alt="many images (upscale)" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-gold text-[10px] py-1 text-center tracking-widest uppercase">Upscaled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="text-center font-medium mb-3 text-bronze">Topography</p>
+                <div class="grid grid-cols-2 gap-0 rounded overflow-hidden border border-line shadow-sm">
+                    <div class="relative">
+                        <img src="/images/topography.png" alt="topography" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-parchment text-[10px] py-1 text-center tracking-widest uppercase">Original</div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/topography_upscale.png" alt="topography (upscale)" class="w-full h-auto block" />
+                        <div class="absolute bottom-0 inset-x-0 bg-soil/80 text-gold text-[10px] py-1 text-center tracking-widest uppercase">Upscaled</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mx-10 my-6" />
+
+        <section class="mt-6 rounded bg-footer p-4 border border-line">
+            <h2 class="text-xl font-semibold text-bronze mb-4">Proxies</h2>
+            <ul class="space-y-3">
+                <li>
+                    <a href="/terminus/" class="text-moss underline hover:text-gold font-mono">
+                        proxy to backend://terminus2/
+                    </a>
+                </li>
+                <li>
+                    <a href="/terminus.old/" class="text-moss underline hover:text-gold font-mono">
+                        proxy to backend://terminus1/
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-footer text-dim text-center py-6 mt-12 text-sm">
+        <a href="https://docs.tekfed.org/microserve/latest/">microserve</a>
+    </footer>
+</body>
+</html>

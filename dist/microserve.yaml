@@ -1,0 +1,57 @@
+microserve:
+  worker_processes: auto
+  error_log: microserve.log
+  error_log_level: debug #trace, debug, info, warn, error, crit
+  pid: /run/microserve/microserve.pid
+  default_type: application/octet-stream
+  log_dir: /var/log/microserve
+
+timeouts:
+  connect: 5
+  read: 10
+  write: 10
+
+backends:
+  - name: terminus1
+    servers:
+      - 127.0.0.1:9191
+  - name: terminus2
+    servers:
+      - 127.0.0.1:9292
+
+servers:
+  - server_name: localhost
+    listen:
+      - bind: 9090
+        protocol: ["http11", "http2c"]
+      - bind: 9443
+        protocol: ["http2", "http3"]
+    tls_cert: /share/microserve/certs/server.crt
+    tls_key: /share/microserve/certs/server.key
+    indexes:
+      - index.html
+      - index.htm
+    locations:
+      - path: /
+        root: /share/microserve/public
+      - path: /terminus
+        proxy_pass: backend://terminus2/  # terminus2 = http2c internal backend
+      - path: /terminus.old
+        proxy_pass: backend://terminus1/  # terminus1 = http11 internal backend
+    error_log: localhost.error.log
+    access_log: localhost.access.log
+    access_log_format: '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer"'
+  - server_name: internal
+    listen:
+      - bind: 127.0.0.1:9191
+        protocol: http11
+      - bind: 127.0.0.1:9292
+        protocol: http2c
+    indexes:
+      - index.html
+    locations:
+      - path: /
+        root: /share/microserve/private
+    error_log: internal.error.log
+    access_log: internal.access.log
+    access_log_format: '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer"'

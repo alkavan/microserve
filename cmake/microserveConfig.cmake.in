@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2025-2026 Igal Alkon
+# SPDX-FileCopyrightText: 2026 ALKONTEK <git@alkontek.com>
+# SPDX-License-Identifier: BSD-3-Clause
+
+@PACKAGE_INIT@
+
+set(MICROSERVE_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(MICROSERVE_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(MICROSERVE_VERSION_PATCH @PROJECT_VERSION_PATCH@)
+set(MICROSERVE_VERSION "@PROJECT_VERSION@")
+
+set_and_check(MICROSERVE_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+# Imported targets (microserve::microserve) are installed once the public
+# library API is exported. Version and include dir work without them.
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/microserveTargets.cmake")
+    include("${CMAKE_CURRENT_LIST_DIR}/microserveTargets.cmake")
+endif()
+
+check_required_components(microserve)

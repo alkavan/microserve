@@ -1,0 +1,10 @@
+federation:
+  enabled: true
+  role: hub              # hub | member
+  membership: certified  # none | unverified | certified
+  node_id: fed-node-1    # match CN / URN
+  node_name: Terminus
+  cert: certs/federation.crt
+  key: certs/federation.key
+  ca: certs/federation-ca.crt
+  crl: certs/federation.crl

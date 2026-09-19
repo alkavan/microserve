@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-labelledby="svg-title svg-desc">
+    <title id="svg-title">Heliconian extension — fiber product of the observerse with social configurations</title>
+    <desc id="svg-desc">Pullback square Ẑ = Ỹ ×_M Σ. Horizontal arrows carry spacetime geometry; vertical arrows carry the Seldon census.</desc>
+
+    <defs>
+        <radialGradient id="nucleus-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f3e5ab"/>
+            <stop offset="55%" stop-color="#d4af37" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+        </radialGradient>
+
+        <marker id="arrow" viewBox="0 0 10 10" refX="9.2" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" fill="#d4af37"/>
+        </marker>
+
+        <symbol id="seal" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="32" cy="32" r="9" fill="none" stroke="currentColor" stroke-width="1"/>
+            <path d="M32 3 L32 61 M3 32 L61 32 M11 11 L53 53 M53 11 L11 53" fill="none" stroke="currentColor" stroke-width="0.7"/>
+        </symbol>
+
+        <symbol id="radiant-ring-a" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="264 88" stroke-linecap="round" opacity="0.92"/>
+        </symbol>
+
+        <symbol id="radiant-ring-b" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="188 63" stroke-linecap="round" transform="rotate(40 60 60)" opacity="0.85"/>
+        </symbol>
+
+        <symbol id="radiant-ring-c" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-dasharray="113 38" stroke-linecap="round" transform="rotate(-20 60 60)" opacity="0.7"/>
+        </symbol>
+
+        <symbol id="radiant-nucleus" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="18" fill="url(#nucleus-glow)"/>
+            <circle cx="60" cy="60" r="7" fill="#f3e5ab" fill-opacity="0.92"/>
+        </symbol>
+
+        <symbol id="core-outer" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.15" stroke-dasharray="66 22" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="core-inner" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="10" fill="url(#nucleus-glow)"/>
+            <circle cx="16" cy="16" r="8.5" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="40 14" stroke-linecap="round" opacity="0.85"/>
+            <circle cx="16" cy="16" r="3.2" fill="#f3e5ab" fill-opacity="0.9"/>
+        </symbol>
+
+        <symbol id="fiber-product" viewBox="0 0 760 440">
+            <rect x="18" y="18" width="724" height="404" rx="6" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
+            <rect x="26" y="26" width="708" height="388" rx="3" fill="none" stroke="currentColor" stroke-width="0.4" opacity="0.2"/>
+
+            <text x="380" y="52" text-anchor="middle" fill="currentColor" font-family="Cinzel, Palatino Linotype, Palatino, serif" font-size="13" letter-spacing="4.2">Layer 9 · Heliconian Extension</text>
+            <text x="380" y="72" text-anchor="middle" fill="currentColor" font-family="'Share Tech Mono', 'Courier New', monospace" font-size="11" letter-spacing="2.4" opacity="0.75">Ẑ = Ỹ ×_M Σ</text>
+
+            <!-- 14-gon: dim Ỹ = 4+10 -->
+            <g transform="translate(170 318)" fill="none" stroke="currentColor" stroke-width="0.45" opacity="0.28">
+                <polygon points="0,-46 19.9,-41.6 37.2,-27.1 45.4,-8.1 43.7,12.1 32.5,29.6 14.3,41.2 -7.3,43.8 -27.1,37.2 -41.6,19.9 -46,0 -41.6,-19.9 -27.1,-37.2 -7.3,-43.8 14.3,-41.2 32.5,-29.6 43.7,-12.1 45.4,8.1 37.2,27.1 19.9,41.6"/>
+            </g>
+
+            <!-- nodes -->
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+                <rect x="80" y="96" width="180" height="80" rx="2"/>
+                <rect x="500" y="96" width="180" height="80" rx="2"/>
+                <rect x="80" y="278" width="180" height="80" rx="2"/>
+                <rect x="500" y="278" width="180" height="80" rx="2"/>
+            </g>
+            <g fill="currentColor" opacity="0.07">
+                <rect x="80" y="96" width="180" height="80" rx="2"/>
+                <rect x="500" y="96" width="180" height="80" rx="2"/>
+                <rect x="80" y="278" width="180" height="80" rx="2"/>
+                <rect x="500" y="278" width="180" height="80" rx="2"/>
+            </g>
+
+            <g text-anchor="middle" font-family="Cinzel, Palatino Linotype, Palatino, serif" fill="currentColor">
+                <text x="170" y="132" font-size="22">Ẑ</text>
+                <text x="170" y="152" font-size="10" letter-spacing="1.6" opacity="0.75" font-family="'Share Tech Mono', 'Courier New', monospace">total space</text>
+                <text x="590" y="132" font-size="22">Σ</text>
+                <text x="590" y="152" font-size="10" letter-spacing="1.6" opacity="0.75" font-family="'Share Tech Mono', 'Courier New', monospace">configurations</text>
+                <text x="170" y="314" font-size="22">Ỹ</text>
+                <text x="170" y="334" font-size="10" letter-spacing="1.6" opacity="0.75" font-family="'Share Tech Mono', 'Courier New', monospace">observerse 14</text>
+                <text x="590" y="314" font-size="22">M</text>
+                <text x="590" y="334" font-size="10" letter-spacing="1.6" opacity="0.75" font-family="'Share Tech Mono', 'Courier New', monospace">spacetime 4</text>
+            </g>
+
+            <!-- morphisms -->
+            <g fill="none" stroke="currentColor" stroke-width="1.15" marker-end="url(#arrow)">
+                <line x1="268" y1="136" x2="492" y2="136"/>
+                <line x1="268" y1="318" x2="492" y2="318"/>
+                <line x1="170" y1="184" x2="170" y2="270"/>
+                <line x1="590" y1="184" x2="590" y2="270"/>
+            </g>
+
+            <g text-anchor="middle" fill="currentColor" font-family="'Share Tech Mono', 'Courier New', monospace" font-size="12">
+                <text x="380" y="124">π_Σ</text>
+                <text x="380" y="306">π_M</text>
+                <text x="148" y="236">π_Ỹ</text>
+                <text x="628" y="236">σ</text>
+            </g>
+
+            <!-- pullback corner on Ẑ -->
+            <path d="M92 124 L92 108 L108 108" fill="none" stroke="currentColor" stroke-width="1.4"/>
+            <text x="118" y="118" fill="currentColor" font-family="'Share Tech Mono', 'Courier New', monospace" font-size="9" opacity="0.8">pb</text>
+
+            <!-- Weitzenböck splitting in the square -->
+            <g font-family="'Share Tech Mono', 'Courier New', monospace" fill="currentColor" text-anchor="middle">
+                <text x="380" y="214" font-size="11" letter-spacing="1.8" opacity="0.9">Lᴴ ⊕ Lⱽ = D̸²_Ẑ</text>
+                <text x="380" y="234" font-size="10" opacity="0.65">horizontal GR/GU · vertical Plan</text>
+            </g>
+
+            <g transform="translate(348 248)" color="#d4af37" fill="none" stroke="currentColor">
+                <g transform="scale(0.42)">
+                    <circle cx="32" cy="32" r="29" stroke-width="1.1"/>
+                    <circle cx="32" cy="32" r="9" stroke-width="1"/>
+                    <path d="M32 3 L32 61 M3 32 L61 32 M11 11 L53 53 M53 11 L11 53" stroke-width="0.7"/>
+                </g>
+            </g>
+
+            <text x="380" y="412" text-anchor="middle" fill="currentColor" font-family="'Share Tech Mono', 'Courier New', monospace" font-size="10" letter-spacing="1.8" opacity="0.55">First Foundation · Terminus · Galactic Library</text>
+        </symbol>
+    </defs>
+
+    <rect width="760" height="440" fill="#07060a"/>
+    <use href="#fiber-product" width="760" height="440"/>
+</svg>

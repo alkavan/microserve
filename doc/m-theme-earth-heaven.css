@@ -1,0 +1,147 @@
+/*
+    Microserve "Earth Heaven" m.css theme.
+
+    Built as a custom :root variable sheet per
+    https://mcss.mosra.cz/css/themes/#make-your-own
+
+    Palette: deep soil and forest-floor backgrounds, moss and clay
+    earth accents, sunlight gold highlights, sky-blue used for
+    info/comments (the heaven accent).
+*/
+
+:root {
+  /* Text properties */
+  --font: 'Source Sans Pro', sans-serif;
+  --code-font: 'Source Code Pro', monospace;
+  --font-size: 16px;
+  --code-font-size: 0.9em; /* *not* rem, so it follows surrounding font size */
+  --line-height: normal;
+  --paragraph-indent: 1.5rem;
+  --paragraph-align: justify;
+  --link-decoration: underline;
+  --link-decoration-nav: none;
+  --link-decoration-heading: none;
+  --nav-brand-case: uppercase;
+  --nav-menu-case: none;
+  --nav-heading-case: uppercase;
+  --nav-categories-case: lowercase;
+  --landing-header-case: lowercase;
+  --heading-font-weight: 600;
+
+  /* Shapes */
+  --border-radius: 0.25rem;
+
+  /* Basics — deep soil / forest floor */
+  --background-color: #1a1914;
+  --color: #e8e2d4;
+  --line-color: #4a5340;
+  --link-color: #8fbc6a;
+  --link-active-color: #e8c97a;
+  --mark-color: #161410;
+  --mark-background-color: #e8c97a;
+  --code-color: #efe8d8;
+  --code-inverted-color: rgba(239, 232, 216, 0.33);
+  --console-color: var(--code-color);
+  --console-inverted-color: var(--code-inverted-color);
+  --code-background-color: #12110d;
+  --code-note-background-color: rgba(18, 17, 13, 0.55);
+  --console-background-color: #0e0d0a;
+  --button-background-color: #161410;
+
+  /* Header — darker soil with a moss underline */
+  --header-border-width: 0 0 0.25rem 0;
+  --header-color: #f4eedc;
+  --header-breadcrumb-color: #8a8474;
+  --header-background-color: #161410;
+  --header-background-color-landing: rgba(22, 20, 16, 0.82);
+  --header-background-color-jumbo: rgba(22, 20, 16, 0.28);
+  --header-link-color: #f4eedc;
+  --header-link-active-color: #e8c97a;
+  --header-link-current-color: #8fbc6a;
+  --header-link-active-background-color: #2a2820;
+  --header-link-active-background-color-semi: rgba(42, 40, 32, 0.55);
+
+  /* Footer */
+  --footer-font-size: 0.85rem;
+  --footer-color: #c4bba8;
+  --footer-background-color: #2e2c24;
+  --footer-link-color: #b8a060;
+  --footer-link-active-color: #e8c97a;
+
+  /* Cover image */
+  --cover-image-background-color: #0e0d0a;
+
+  /* Search (used only by m-documentation.css) */
+  --search-overlay-color: var(--header-background-color-landing);
+  --search-background-color: var(--header-background-color);
+
+  /* Article */
+  --article-header-color: #f4eedc;
+  --article-footer-color: #c4bba8;
+  --article-heading-color: #b8a060;
+  --article-heading-active-color: #e8c97a;
+
+  /* Right navigation panel */
+  --navpanel-link-color: #f4eedc;
+  --navpanel-link-active-color: #e8c97a;
+
+  /* Plots */
+  --plot-background-color: #3a3d30;
+  --plot-error-color: #f4eedc;
+
+  /* Colored components */
+  --default-color: #e8e2d4;
+  --default-link-active-color: #e8c97a;
+  --default-filled-color: #e8e2d4;
+  --default-filled-background-color: #3a3d30;
+  --default-filled-link-color: #8fbc6a;
+  --default-filled-link-active-color: #e8c97a;
+
+  /* Primary = moss / living earth */
+  --primary-color: #8fbc6a;
+  --primary-link-active-color: #e8c97a;
+  --primary-filled-color: #161410;
+  --primary-filled-background-color: #6b8f4e;
+  --primary-filled-link-color: #2a3a1c;
+  --primary-filled-link-active-color: #161410;
+
+  --success-color: #7dce7a;
+  --success-link-active-color: #b8ecc0;
+  --success-filled-color: #c5e8c4;
+  --success-filled-background-color: #1f4a28;
+  --success-filled-link-color: #7dce7a;
+  --success-filled-link-active-color: #c5e8c4;
+
+  /* Warning = sunlight gold */
+  --warning-color: #e8c97a;
+  --warning-link-active-color: #f4e4b0;
+  --warning-filled-color: #161410;
+  --warning-filled-background-color: #6a5a20;
+  --warning-filled-link-color: #e8c97a;
+  --warning-filled-link-active-color: #f4e4b0;
+
+  /* Danger = terracotta / clay */
+  --danger-color: #c4784a;
+  --danger-link-active-color: #e09a72;
+  --danger-filled-color: #f0c4a8;
+  --danger-filled-background-color: #5a3220;
+  --danger-filled-link-color: #d49068;
+  --danger-filled-link-active-color: #e8c97a;
+
+  /* Info = heaven sky blue */
+  --info-color: #6a9bc4;
+  --info-link-active-color: #8fb8d8;
+  --info-filled-color: #d4e8f4;
+  --info-filled-background-color: #1e3548;
+  --info-filled-link-color: #8fb8d8;
+  --info-filled-link-active-color: #d4e8f4;
+
+  --dim-color: #8a8474;
+  --dim-link-color: #c4bba8;
+  --dim-link-active-color: #8a8474;
+  --dim-filled-color: #8a8474;
+  --dim-filled-background-color: #24221c;
+  --dim-filled-link-color: #c4bba8;
+  --dim-filled-link-active-color: #8a8474;
+  --dim-button-active-color: #c4bba8;
+}

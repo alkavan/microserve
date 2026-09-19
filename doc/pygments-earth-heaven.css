@@ -1,0 +1,69 @@
+/* Microserve "Earth Heaven" Pygments overlay. Matches doc/m-theme-earth-heaven.css. */
+
+.m-code .hll { background-color: #2e3224 }
+.m-code .c { color: #6a9bc4 } /* Comment — sky */
+.m-code .k { color: #c4a35a; font-weight: bold } /* Keyword — earth gold */
+.m-code .n { color: #e8e2d4 } /* Name */
+.m-code .o { color: #9a9078 } /* Operator */
+.m-code .p { color: #9a9078 } /* Punctuation */
+.m-code .ch { color: #6a9bc4 } /* Comment.Hashbang */
+.m-code .cm { color: #6a9bc4 } /* Comment.Multiline */
+.m-code .cp { color: #7dce7a } /* Comment.Preproc */
+.m-code .cpf { color: #e8c97a } /* Comment.PreprocFile */
+.m-code .c1 { color: #6a9bc4 } /* Comment.Single */
+.m-code .cs { color: #6a9bc4 } /* Comment.Special */
+.m-code .gd { color: #c4784a } /* Generic.Deleted */
+.m-code .ge { color: #efe8d8; font-style: italic } /* Generic.Emph */
+.m-code .gh { color: #f4eedc; font-weight: bold } /* Generic.Heading */
+.m-code .gi { color: #7dce7a } /* Generic.Inserted */
+.m-code .gs { color: #efe8d8; font-weight: bold } /* Generic.Strong */
+.m-code .gu { color: #6a9bc4 } /* Generic.Subheading */
+.m-code .kc { color: #c4a35a; font-weight: bold } /* Keyword.Constant */
+.m-code .kd { color: #c4a35a; font-weight: bold } /* Keyword.Declaration */
+.m-code .kn { color: #c4a35a; font-weight: bold } /* Keyword.Namespace */
+.m-code .kp { color: #c4a35a; font-weight: bold } /* Keyword.Pseudo */
+.m-code .kr { color: #c4a35a; font-weight: bold } /* Keyword.Reserved */
+.m-code .kt { color: #c4784a; font-weight: bold } /* Keyword.Type */
+.m-code .m { color: #e8c97a } /* Literal.Number */
+.m-code .s { color: #d49068 } /* Literal.String */
+.m-code .na { color: #e8e2d4; font-weight: bold } /* Name.Attribute */
+.m-code .nb { color: #c4a35a; font-weight: bold } /* Name.Builtin */
+.m-code .nc { color: #e8e2d4; font-weight: bold } /* Name.Class */
+.m-code .no { color: #e8e2d4 } /* Name.Constant */
+.m-code .nd { color: #e8e2d4 } /* Name.Decorator */
+.m-code .ni { color: #e8e2d4 } /* Name.Entity */
+.m-code .ne { color: #e8e2d4 } /* Name.Exception */
+.m-code .nf { color: #e8c97a } /* Name.Function */
+.m-code .nl { color: #e8e2d4 } /* Name.Label */
+.m-code .nn { color: #e8e2d4 } /* Name.Namespace */
+.m-code .nx { color: #e8e2d4 } /* Name.Other */
+.m-code .py { color: #e8e2d4 } /* Name.Property */
+.m-code .nt { color: #e8e2d4; font-weight: bold } /* Name.Tag */
+.m-code .nv { color: #e8c97a } /* Name.Variable */
+.m-code .ow { color: #e8e2d4; font-weight: bold } /* Operator.Word */
+.m-code .w { color: #e8e2d4 } /* Text.Whitespace */
+.m-code .mb { color: #e8c97a } /* Literal.Number.Bin */
+.m-code .mf { color: #e8c97a } /* Literal.Number.Float */
+.m-code .mh { color: #e8c97a } /* Literal.Number.Hex */
+.m-code .mi { color: #e8c97a } /* Literal.Number.Integer */
+.m-code .mo { color: #e8c97a } /* Literal.Number.Oct */
+.m-code .sa { color: #d49068 } /* Literal.String.Affix */
+.m-code .sb { color: #d49068 } /* Literal.String.Backtick */
+.m-code .sc { color: #a888c0 } /* Literal.String.Char */
+.m-code .dl { color: #d49068 } /* Literal.String.Delimiter */
+.m-code .sd { color: #d49068 } /* Literal.String.Doc */
+.m-code .s2 { color: #d49068 } /* Literal.String.Double */
+.m-code .se { color: #a888c0 } /* Literal.String.Escape */
+.m-code .sh { color: #d49068 } /* Literal.String.Heredoc */
+.m-code .si { color: #6a9bc4 } /* Literal.String.Interpol */
+.m-code .sx { color: #d49068 } /* Literal.String.Other */
+.m-code .sr { color: #d49068 } /* Literal.String.Regex */
+.m-code .s1 { color: #d49068 } /* Literal.String.Single */
+.m-code .ss { color: #d49068 } /* Literal.String.Symbol */
+.m-code .bp { color: #c4a35a; font-weight: bold } /* Name.Builtin.Pseudo */
+.m-code .fm { color: #e8c97a } /* Name.Function.Magic */
+.m-code .vc { color: #e8c97a } /* Name.Variable.Class */
+.m-code .vg { color: #e8c97a } /* Name.Variable.Global */
+.m-code .vi { color: #e8c97a } /* Name.Variable.Instance */
+.m-code .vm { color: #e8c97a } /* Name.Variable.Magic */
+.m-code .il { color: #e8c97a } /* Literal.Number.Integer.Long */
